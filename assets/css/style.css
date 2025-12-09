@@ -1,0 +1,143 @@
+/* assets/css/style.css - fixed + centered + small UI polish */
+
+/* Colors (feel free to tweak) */
+:root{
+  --bg: #F4F7FB;
+  --card-bg: #ffffff;
+  --muted: #7B8794;
+  --accent: #12305A;   /* deep navy */
+  --primary: #12305A;
+  --soft: #EEF2FF;
+  --border: #E6E9EE;
+  --glass: rgba(17,24,39,0.04);
+  --shadow: rgba(9,18,30,0.06);
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+html, body { height: 100%; }
+body{
+  margin:0;
+  padding:0;
+  font-family: Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+
+  /* Center the content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* container that limits width */
+.page-bg{
+  width:100%;
+  max-width:540px;
+  margin: 0; /* ensure no accidental offset */
+  padding: 28px; /* breathing room on very small screens */
+}
+
+/* Card */
+.auth-card{
+  background: var(--card-bg);
+  border-radius:14px;
+  padding:28px;
+  box-shadow: 0 20px 40px var(--shadow);
+  border: 1px solid rgba(17,24,39,0.03);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.auth-card:hover { transform: translateY(-4px); box-shadow: 0 28px 58px rgba(9,18,30,0.08); }
+
+/* Top area */
+.auth-top{ text-align:center; margin-bottom:18px; }
+.icon-wrap{
+  width:56px; height:56px; margin:0 auto 12px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:12px; background:var(--soft);
+}
+.title{
+  font-size:22px; margin:6px 0 4px; color:var(--accent); font-weight:700;
+}
+.subtitle{ margin:0; color:var(--muted); font-size:14px; }
+
+/* Form */
+.form{ margin-top:16px; display:block; }
+.input-group{
+  display:flex; align-items:center; gap:12px;
+  background: #F7F9FC; padding:14px 16px; border-radius:12px;
+  border:1px solid var(--border); margin-bottom:12px;
+}
+.input-icon{ display:flex; align-items:center; opacity:0.9; min-width:20px; justify-content:center }
+.input-group input{
+  border:0; outline:none; background:transparent; font-size:15px; width:100%;
+  color:#0f1724;
+}
+
+/* Input focus */
+.input-group:focus-within { box-shadow: 0 6px 18px rgba(18,48,90,0.04); border-color: rgba(18,48,90,0.06); }
+
+/* Buttons row */
+.two-buttons{ display:flex; gap:12px; margin-top:6px; }
+.btn{
+  padding:12px 14px; border-radius:12px; font-weight:600; font-size:15px; cursor:pointer; border:0;
+  transition: transform .12s, box-shadow .12s, background-color .12s;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.btn:active{ transform:translateY(1px) }
+
+/* Primary filled */
+.btn-primary{
+  background: var(--primary); color:#fff; flex:1;
+  box-shadow: 0 6px 14px rgba(18,48,90,0.12);
+}
+.btn-primary:hover { filter:brightness(0.98); box-shadow: 0 10px 20px rgba(18,48,90,0.12); }
+
+/* Outline */
+.btn-outline{
+  background:#F7F9FC; color:var(--accent); flex:1; border:1px solid var(--border);
+}
+.btn-outline:hover { background:#F3F6FA; }
+
+/* Divider OR */
+.divider{ display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted); font-weight:600; font-size:13px;}
+.divider::before, .divider::after{
+  content:""; flex:1; height:1px; background:var(--border);
+}
+.btn-google{
+  display:flex; align-items:center; gap:10px; justify-content:center;
+  background:#F7F9FC; border:1px solid var(--border); border-radius:12px; padding:12px;
+  font-weight:600; color:var(--accent);
+}
+.google-icon{ display:flex; width:18px; height:18px; align-items:center; justify-content:center; margin:0;}
+
+/* note box */
+.note{ display:flex; gap:12px; align-items:center; margin-top:14px; background:#FBFBFF; padding:12px; border-radius:10px; border:1px solid var(--border); color:#6B7280; font-size:13px; }
+.note-icon{ width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:#fff; }
+
+/* message area */
+.msg{ margin:8px 0 0; color:#c53030; font-size:13px; min-height:18px; }
+
+/* Small utilities used across pages */
+.date-picker{ padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; }
+.small-input{ padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; }
+
+/* Activity list card styles (used in home) */
+.list { margin-top:12px; display:flex; flex-direction:column; gap:10px; }
+.activity-card { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:10px 12px; border-radius:10px; background:#FBFBFF; border:1px solid var(--border); }
+.meta { color:var(--muted); font-size:13px; }
+.actions button { margin-left:8px; }
+
+/* Dashboard small styles */
+.card { background:#fff; border-radius:12px; padding:14px; border:1px solid var(--border); }
+
+/* responsive */
+@media (max-width:900px){
+  .dashboard-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width:420px){
+  .auth-card{ padding:20px; border-radius:12px; }
+  .two-buttons{ flex-direction:column; }
+  .page-bg{ padding:18px; }
+}

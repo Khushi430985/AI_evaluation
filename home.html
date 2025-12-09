@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Time Tracker — Home</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* small overrides for home layout */
+    .container { display:flex; flex-direction:column; gap:18px; }
+    .top-row { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:6px; }
+    .date-picker { padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; }
+    .activity-form { display:grid; grid-template-columns: 1fr 140px; gap:12px; align-items:center; }
+    .small-input { padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; }
+    .list { margin-top:12px; display:flex; flex-direction:column; gap:10px; }
+    .activity-card { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:10px 12px; border-radius:10px; background:#FBFBFF; border:1px solid var(--border); }
+    .meta { color:var(--muted); font-size:13px; }
+    .actions button { margin-left:8px; }
+    .summary { display:flex; gap:12px; align-items:center; margin-top:8px; }
+    .chip { padding:8px 12px; border-radius:10px; background:#fff; border:1px solid var(--border); font-weight:600; }
+    .analyse-wrap { display:flex; justify-content:flex-end; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="page-bg" style="max-width:760px;">
+    <main class="auth-card" style="padding:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div>
+          <h2 style="margin:0;color:var(--accent)">Add Activities</h2>
+          <p style="margin:4px 0 0;color:var(--muted);font-size:14px">Log minutes for each day</p>
+        </div>
+        <div>
+          <button id="logoutBtn" class="btn btn-outline" style="padding:8px 12px;">Logout</button>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="top-row">
+          <input id="datePicker" type="date" class="date-picker">
+          <div class="summary">
+            <div class="chip" id="totalTime">Total: 0m</div>
+            <div class="chip" id="remaining">Remaining: 1440m</div>
+            <div class="chip" id="numActivities">Activities: 0</div>
+          </div>
+        </div>
+
+        <form id="addForm" onsubmit="return false;">
+          <div class="activity-form">
+            <input id="activityName" class="small-input" placeholder="Activity name (e.g., Sleep)" required>
+            <select id="activityCategory" class="small-input">
+              <option value="Work">Work</option>
+              <option value="Study">Study</option>
+              <option value="Sleep">Sleep</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Exercise">Exercise</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <input id="activityMinutes" type="number" min="1" max="1440" class="small-input" placeholder="Minutes" required>
+            <div style="display:flex;gap:8px;">
+              <button id="addBtn" class="btn btn-primary" style="padding:10px">Add</button>
+              <button id="clearBtn" class="btn btn-outline" style="padding:10px">Clear</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="list" id="activitiesList">
+          <!-- activity cards injected here -->
+        </div>
+
+        <div class="analyse-wrap">
+          <button id="analyseBtn" class="btn btn-primary" disabled>Analyse (requires 1440m)</button>
+        </div>
+      </div>
+
+      <p id="homeMsg" class="msg" style="margin-top:12px;"></p>
+    </main>
+  </div>
+
+  <!-- Firebase v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script src="assets/js/firebase.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>

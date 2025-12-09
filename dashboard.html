@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Time Tracker — Dashboard</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .dashboard-grid { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+    .card { background:#fff; border-radius:12px; padding:12px; border:1px solid var(--border); }
+    .no-data { text-align:center; padding:28px; color:var(--muted); }
+    /* Make canvases limited in height for better layout */
+    .card canvas { width: 100% !important; max-height: 170px !important; height: auto !important; display:block; margin: 6px 0 0; }
+    /* Smaller headings inside cards */
+    .card h3 { margin:0 0 6px 0; font-size:15px; color:var(--accent); }
+    /* Responsive tweak */
+    @media (max-width:900px){ 
+      .dashboard-grid { grid-template-columns:1fr; }
+      .dashboard-grid > div:last-child { order: 2; } /* show charts first on small screens */
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg" style="max-width:1100px;">
+    <main class="auth-card" style="padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div>
+          <h2 style="margin:0;color:var(--accent)">Analytics Dashboard</h2>
+          <p style="margin:4px 0 0;color:var(--muted);font-size:14px">View breakdown of your day</p>
+        </div>
+        <div>
+          <button id="backHome" class="btn btn-outline" style="padding:8px 12px;">Back to Home</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;">
+        <label style="font-weight:600;color:var(--muted)">Select Date:</label>
+        <input id="dashDate" type="date" class="date-picker">
+      </div>
+
+      <div class="dashboard-grid">
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <h3>Summary</h3>
+            <div id="summaryStats" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;">
+            <h3>Activities (Bar chart)</h3>
+            <!-- reduced canvas size -->
+            <canvas id="barChart" width="300" height="140"></canvas>
+          </div>
+
+          <div class="card">
+            <h3>Time per Category (Pie)</h3>
+            <canvas id="pieChart" width="260" height="140"></canvas>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3>Detailed list</h3>
+            <div id="detailList" style="max-height:320px; overflow:auto; padding-top:6px;"></div>
+          </div>
+          <div id="noDataCard" class="card" style="margin-top:12px; display:none;">
+            <div class="no-data">
+              <div style="font-size:36px; margin-bottom:8px;"></div>
+              <div style="font-weight:700; font-size:18px;">No data available for this date</div>
+              <p style="margin:8px 0;color:var(--muted)">Start logging your day to see analytics.</p>
+              <button id="goAdd" class="btn btn-primary">Start logging for this date</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p id="dashMsg" class="msg" style="margin-top:12px;"></p>
+    </main>
+  </div>
+
+  <!-- Firebase v8 + Chart.js -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="assets/js/firebase.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
