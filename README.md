@@ -58,14 +58,7 @@ Built using *HTML, CSS, JavaScript, Firebase Authentication, Firestore, and Char
 - *Gemini AI* → Helped create color palette, typography and responsive UI ideas.  
 AI was used to speed up development, fix errors, and improve UI/UX quality.
 
----
 
-## 🧪 Test Login (For Evaluators)
-*Email:* reviewer.demo@example.com  
-*Password:* Demo1234  
-(Or evaluator can use Google Sign-In)
-
----
 
 ## 🛠 How to Run the Project Locally
 
