@@ -7,14 +7,18 @@ Built using *HTML, CSS, JavaScript, Firebase Authentication, Firestore, and Char
 
 ## 🚀 Live Demo  
 👉  https://khushi430985.github.io/AI_evaluation/
-(Replace this with your actual link)
 
 
+
+---
+## Video Walkthrough  
+
+👉 https://drive.google.com/file/d/1GFbbdwBCCKffTLLBv96Nm403luwn-HTr/view?usp=sharing
 ---
 
 ## 📂 GitHub Repository  
 👉 https://github.com/Khushi430985/AI_evaluation 
-(Replace with your repo link)
+
 
 ---
 
